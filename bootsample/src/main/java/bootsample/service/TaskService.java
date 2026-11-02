@@ -2,7 +2,7 @@ package bootsample.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import bootsample.dao.TaskRepository;
 import bootsample.model.Task;
@@ -26,7 +26,7 @@ public class TaskService {
 	}
 	
 	public Task findTask(int id){
-		return taskRepository.findOne(id);
+		return taskRepository.findById(id).orElse(null);
 	}
 	
 	public void save(Task task){
@@ -34,6 +34,6 @@ public class TaskService {
 	}
 	
 	public void delete(int id){
-		taskRepository.delete(id);
+		taskRepository.deleteById(id);
 	}
 }
